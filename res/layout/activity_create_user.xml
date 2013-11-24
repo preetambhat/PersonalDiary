@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/userNameCreateUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" 
+        android:hint="Username">
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/passwordCreateUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword" 
+        android:hint="Password"/>
+
+    <EditText
+        android:id="@+id/firstNameCreateUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" 
+        android:hint="First name"/>
+
+    <EditText
+        android:id="@+id/lastNameCreateUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" 
+        android:hint="Last name"/>
+
+    <Button
+        android:id="@+id/createUserCreateUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create user" 
+        android:onClick="createUserInDatabase"/>
+
+</LinearLayout>

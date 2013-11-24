@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.axionet.personaldiary"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="19" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.axionet.personaldiary.LoginActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.axionet.personaldiary.CreateUser"
+            android:label="@string/title_activity_create_user"
+            android:parentActivityName="com.axionet.personaldiary.LoginActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.axionet.personaldiary.LoginActivity" />
+        </activity>
+        <activity
+            android:name="com.axionet.personaldiary.DiaryActivity"
+            android:label="@string/title_activity_diary" >
+        </activity>
+        <activity
+            android:name="com.axionet.personaldiary.AddEntry"
+            android:label="@string/title_activity_add_entry"
+            android:parentActivityName="com.axionet.personaldiary.DiaryActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.axionet.personaldiary.DiaryActivity" />
+        </activity>
+    </application>
+
+</manifest>
