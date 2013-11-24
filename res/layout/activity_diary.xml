@@ -29,14 +29,6 @@
             android:onClick="addEntry"
             android:text="Add entry" />
 
-        <Button
-            android:id="@+id/refreshTable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.10"
-          
-            android:text="Refresh table" />
-
     </LinearLayout>
 
 </LinearLayout>

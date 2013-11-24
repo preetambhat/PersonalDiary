@@ -75,7 +75,7 @@ public class AddEntry extends Activity {
 		Database db = new Database(this, "DATABASE", null, 1);
 		
 		SQLiteDatabase database = db.getReadableDatabase();
-		
+	
 		database.execSQL(insertEntrySQLString,new Object[]{userNameString,entryMessageString,entryDateString,entryTimeString});
 		
 		startActivity(new Intent(this,DiaryActivity.class));

@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.text.Layout;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -45,12 +48,39 @@ public class DiaryActivity extends Activity {
 		((LinearLayout)findViewById(R.id.diaryLinearLayout)).removeAllViews();
 		
 		while(cursor.moveToNext()){
-			TextView textView = new TextView(this);
-			textView.setText(cursor.getString(1));
-			textView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
-			textView.setPadding(20, 20, 20, 20);
-			textView.setBackgroundColor(Color.GRAY);
-			((LinearLayout)findViewById(R.id.diaryLinearLayout)).addView(textView);
+			
+			LinearLayout layout = new LinearLayout(this);
+			layout.setOrientation(LinearLayout.VERTICAL);
+			
+			TextView messageView = new TextView(this);
+			messageView.setText(cursor.getString(1));
+			messageView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
+			//messageView.setPadding(20, 20, 20, 20);
+			messageView.setBackgroundColor(Color.WHITE);
+			
+			TextView dateView = new TextView(this);
+			dateView.setText(cursor.getString(2) + " " + cursor.getString(3));
+			dateView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
+			dateView.setPadding(0, 5, 10, 20);
+			dateView.setTextSize(10);
+			dateView.setBackgroundColor(Color.WHITE);
+			dateView.setTextColor(Color.GRAY);
+			
+			
+			dateView.setGravity(Gravity.RIGHT);
+			
+			layout.addView(messageView);
+			layout.addView(dateView);
+			
+			layout.setBackgroundResource(R.drawable.bordershape);
+		
+			View view = new View(this);
+			view.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,2));
+			view.setBackgroundColor(Color.BLACK);
+			
+			layout.addView(view);
+			
+			((LinearLayout)findViewById(R.id.diaryLinearLayout)).addView(layout);
 		}
 		
 		cursor.close();
