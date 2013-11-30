@@ -78,7 +78,16 @@ public class AddEntry extends Activity {
 	
 		database.execSQL(insertEntrySQLString,new Object[]{userNameString,entryMessageString,entryDateString,entryTimeString});
 		
+		AddEntry.this.finish();
 		startActivity(new Intent(this,DiaryActivity.class));
+	}
+	
+	@Override
+	public void onBackPressed(){
+		AddEntry.this.finish();
+		Intent intent = new Intent(this,DiaryActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(intent);
 	}
 
 }

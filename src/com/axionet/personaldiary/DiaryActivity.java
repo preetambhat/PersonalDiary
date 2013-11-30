@@ -34,6 +34,7 @@ public class DiaryActivity extends Activity {
 	}
 	
 	public void addEntry(View view){
+		DiaryActivity.this.finish();
 		startActivity(new Intent(this,AddEntry.class));
 	}
 	
@@ -85,6 +86,15 @@ public class DiaryActivity extends Activity {
 		
 		cursor.close();
 		
+	}
+	
+	@Override
+	public void onBackPressed(){
+		
+		DiaryActivity.this.finish();
+		Intent intent = new Intent(this,LoginActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(intent);
 	}
 
 
