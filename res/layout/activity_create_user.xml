@@ -46,7 +46,7 @@
     <Button
         android:id="@+id/createUserCreateUser"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:text="Create user" 
         android:onClick="createUserInDatabase"
         android:background="@drawable/greenbutton"/>

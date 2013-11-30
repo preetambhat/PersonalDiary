@@ -95,15 +95,17 @@ public class CreateUser extends Activity {
 		
 		Toast.makeText(this, "User created", Toast.LENGTH_SHORT).show();
 		CreateUser.this.finish();
+		database.close();
 		startActivity(new Intent(this,LoginActivity.class));
+		
 		} else {
 			Toast.makeText(this, "Username is taken. Use different username", Toast.LENGTH_LONG).show();	
+			database.close();
 		}
 	}
 	
 	@Override
 	public void onBackPressed(){
-		
 		CreateUser.this.finish();
 		Intent intent = new Intent(this,LoginActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

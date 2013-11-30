@@ -64,6 +64,11 @@ public class AddEntry extends Activity {
 		String entryMessageString = ((EditText)findViewById(R.id.entryTextMessage)).getText().toString();
 		String userNameString = LoginActivity.LOGGED_IN_USERNAME;
 		
+		if(entryMessageString.trim().equals("")){
+			Toast.makeText(this, "Enter something to submit.", Toast.LENGTH_SHORT).show();
+			return;
+		}
+		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		String entryDateString = (dateFormat.format(new Date()));
 		
@@ -78,6 +83,7 @@ public class AddEntry extends Activity {
 	
 		database.execSQL(insertEntrySQLString,new Object[]{userNameString,entryMessageString,entryDateString,entryTimeString});
 		
+		database.close();
 		AddEntry.this.finish();
 		startActivity(new Intent(this,DiaryActivity.class));
 	}

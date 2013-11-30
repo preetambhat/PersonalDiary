@@ -22,6 +22,7 @@ public class Database extends SQLiteOpenHelper {
 		String createDiaryTableSQL = "CREATE TABLE Diary(Username VARCHAR(12),Entry_Text VARCHAR(2048),Entry_Date VARCHAR(10),Entry_Time VARCHAR(10))";
 		database.execSQL(createDiaryTableSQL);
 		
+		database.close();
 	}
 
 	@Override

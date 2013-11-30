@@ -52,8 +52,9 @@ public class LoginActivity extends Activity {
     	
     	if((database.rawQuery(loginSQL, new String[]{userName,passWord}).getCount() == 0)){
     		Toast.makeText(this, "Invalid login details", Toast.LENGTH_SHORT).show();
+    		database.close();
     	} else {
-    		
+    		database.close();
     		LOGGED_IN_USERNAME = userName;
     		LoginActivity.this.finish();
     		Intent intent = new Intent(this,DiaryActivity.class);

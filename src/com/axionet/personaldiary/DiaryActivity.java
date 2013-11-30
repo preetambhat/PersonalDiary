@@ -2,6 +2,8 @@ package com.axionet.personaldiary;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -42,6 +44,8 @@ public class DiaryActivity extends Activity {
 		
 		Database db = new Database(this, "DATABASE", null, 1);
 		SQLiteDatabase database = db.getReadableDatabase();
+		
+		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
 	
 		String selectEntriesQueryString = "SELECT * FROM DIARY WHERE Username = ?";
 		Cursor cursor = database.rawQuery(selectEntriesQueryString, new String[]{LoginActivity.LOGGED_IN_USERNAME} );
@@ -53,48 +57,75 @@ public class DiaryActivity extends Activity {
 			LinearLayout layout = new LinearLayout(this);
 			layout.setOrientation(LinearLayout.VERTICAL);
 			
+			layout.setLayoutParams(layoutParams);
+			layoutParams.setMargins(10, 10, 0, 10);
+			layout.setPadding(10, 10, 10, 10);
+			
+			layout.setBackgroundResource(R.drawable.papyrus);
+		
+			
+			
+			
 			TextView messageView = new TextView(this);
 			messageView.setText(cursor.getString(1));
 			messageView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
-			//messageView.setPadding(20, 20, 20, 20);
-			messageView.setBackgroundColor(Color.WHITE);
+			
+			messageView.setTextColor(Color.BLACK);
+			messageView.setGravity(Gravity.FILL);
 			
 			TextView dateView = new TextView(this);
 			dateView.setText(cursor.getString(2) + " " + cursor.getString(3));
 			dateView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
-			dateView.setPadding(0, 5, 10, 20);
-			dateView.setTextSize(10);
-			dateView.setBackgroundColor(Color.WHITE);
-			dateView.setTextColor(Color.GRAY);
 			
+			dateView.setTextSize(10);
+			dateView.setTextColor(Color.BLACK);
 			
 			dateView.setGravity(Gravity.RIGHT);
-			
 			layout.addView(messageView);
 			layout.addView(dateView);
-			
-			layout.setBackgroundResource(R.drawable.bordershape);
 		
-			View view = new View(this);
-			view.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,2));
-			view.setBackgroundColor(Color.BLACK);
 			
-			layout.addView(view);
 			
 			((LinearLayout)findViewById(R.id.diaryLinearLayout)).addView(layout);
 		}
 		
 		cursor.close();
+		database.close();
 		
 	}
 	
+	 
 	@Override
 	public void onBackPressed(){
 		
-		DiaryActivity.this.finish();
-		Intent intent = new Intent(this,LoginActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		startActivity(intent);
+		
+		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+		dialogBuilder.setTitle("Logout");
+		dialogBuilder.setMessage("Are you sure you want to logout?");
+		dialogBuilder.setCancelable(false);
+		dialogBuilder.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface arg0, int arg1) {
+
+				DiaryActivity.this.finish();
+				Intent intent = new Intent(DiaryActivity.this,LoginActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(intent);		
+			}
+		});
+		
+dialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface arg0, int arg1) {
+				arg0.cancel();
+				
+			}
+		});
+
+dialogBuilder.show();
+		
 	}
 
 
