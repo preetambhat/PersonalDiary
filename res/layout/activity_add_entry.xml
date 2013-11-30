@@ -6,19 +6,22 @@
     <EditText
         android:id="@+id/entryTextMessage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:ems="10"
         android:inputType="textMultiLine" 
-        android:hint="Message">
+        android:hint="Message"
+        android:gravity="top|left"
+        >
 
         <requestFocus />
     </EditText>
 
     <Button
         android:id="@+id/addEntryToDatabase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
         android:text="Add entry"
-        android:onClick="addEntryToDatabase" />
+        android:onClick="addEntryToDatabase" 
+        android:background="@drawable/greenbutton" />
 
 </LinearLayout>

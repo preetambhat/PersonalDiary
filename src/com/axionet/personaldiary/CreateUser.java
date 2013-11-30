@@ -65,7 +65,7 @@ public class CreateUser extends Activity {
 		String passwordString = ((EditText)findViewById(R.id.passwordCreateUser)).getText().toString();
 		String firstNameString = ((EditText)findViewById(R.id.firstNameCreateUser)).getText().toString();
 		String lastNameString = ((EditText)findViewById(R.id.lastNameCreateUser)).getText().toString();
-		
+		String retypePasswordString = ((EditText)findViewById(R.id.retypePasswordCreateUser)).getText().toString();
 		if(usernameString.trim().length() < 5){
 			Toast.makeText(this, "Please have atleast 5 characters in username.", Toast.LENGTH_SHORT).show();
 			return;
@@ -81,6 +81,11 @@ public class CreateUser extends Activity {
 			return;
 		}
 		
+		if(passwordString.equals(retypePasswordString) == false){
+			Toast.makeText(this, "Passwords donot match.", Toast.LENGTH_SHORT).show();
+			return;
+		}
+		
 		String insertUserSQL = "INSERT INTO User VALUES(?,?,?,?)";
 		
 		String checkUserSQL = "SELECT * from User where Username = ?";
@@ -89,11 +94,20 @@ public class CreateUser extends Activity {
 		database.execSQL(insertUserSQL, new Object[]{usernameString,passwordString,firstNameString,lastNameString});
 		
 		Toast.makeText(this, "User created", Toast.LENGTH_SHORT).show();
-		
+		CreateUser.this.finish();
 		startActivity(new Intent(this,LoginActivity.class));
 		} else {
-			Toast.makeText(this, "Username exists. Use different username", Toast.LENGTH_LONG).show();	
+			Toast.makeText(this, "Username is taken. Use different username", Toast.LENGTH_LONG).show();	
 		}
+	}
+	
+	@Override
+	public void onBackPressed(){
+		
+		CreateUser.this.finish();
+		Intent intent = new Intent(this,LoginActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(intent);
 	}
 
 }

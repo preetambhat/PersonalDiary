@@ -30,6 +30,7 @@ public class LoginActivity extends Activity {
     }
     
     public void createUserClick(View view){
+    	LoginActivity.this.finish();
     	Intent intent = new Intent(this,CreateUser.class);
     	startActivity(intent);
     }

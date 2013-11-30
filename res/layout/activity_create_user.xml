@@ -10,7 +10,6 @@
         android:ems="10" 
         android:hint="Username">
 
-        <requestFocus />
     </EditText>
 
     <EditText
@@ -21,6 +20,15 @@
         android:inputType="textPassword" 
         android:hint="Password"/>
 
+        <EditText
+        android:id="@+id/retypePasswordCreateUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword" 
+        android:hint="Retype Password"/>
+    
+    
     <EditText
         android:id="@+id/firstNameCreateUser"
         android:layout_width="match_parent"
@@ -37,9 +45,10 @@
 
     <Button
         android:id="@+id/createUserCreateUser"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Create user" 
-        android:onClick="createUserInDatabase"/>
+        android:onClick="createUserInDatabase"
+        android:background="@drawable/greenbutton"/>
 
 </LinearLayout>
