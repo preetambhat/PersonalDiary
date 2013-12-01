@@ -19,10 +19,9 @@ public class Database extends SQLiteOpenHelper {
 		String createLoginTableSQL = "CREATE TABLE User(Username VARCHAR(12) PRIMARY KEY,Password VARCHAR(12),FirstName VARCHAR(12),LastName VARCHAR(12))";
 		database.execSQL(createLoginTableSQL);
 		
-		String createDiaryTableSQL = "CREATE TABLE Diary(Username VARCHAR(12),Entry_Text VARCHAR(2048),Entry_Date VARCHAR(10),Entry_Time VARCHAR(10))";
+		String createDiaryTableSQL = "CREATE TABLE Diary(ID INTEGER PRIMARY KEY AUTOINCREMENT,Username VARCHAR(12),Entry_Text VARCHAR(2048),Entry_Date VARCHAR(10),Entry_Time VARCHAR(10))";
 		database.execSQL(createDiaryTableSQL);
 		
-		database.close();
 	}
 
 	@Override

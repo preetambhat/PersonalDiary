@@ -62,19 +62,17 @@ public class DiaryActivity extends Activity {
 			layout.setPadding(10, 10, 10, 10);
 			
 			layout.setBackgroundResource(R.drawable.papyrus);
-		
-			
-			
+				
 			
 			TextView messageView = new TextView(this);
-			messageView.setText(cursor.getString(1));
+			messageView.setText(cursor.getString(2));
 			messageView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
 			
 			messageView.setTextColor(Color.BLACK);
 			messageView.setGravity(Gravity.FILL);
 			
 			TextView dateView = new TextView(this);
-			dateView.setText(cursor.getString(2) + " " + cursor.getString(3));
+			dateView.setText(cursor.getString(3) + " " + cursor.getString(4));
 			dateView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
 			
 			dateView.setTextSize(10);

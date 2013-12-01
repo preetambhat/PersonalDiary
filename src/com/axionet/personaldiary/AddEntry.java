@@ -75,7 +75,7 @@ public class AddEntry extends Activity {
 		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 		String entryTimeString = (timeFormat.format(new Date()));
 		
-		String insertEntrySQLString = "INSERT INTO Diary VALUES(?,?,?,?)";
+		String insertEntrySQLString = "INSERT INTO Diary(USername,Entry_Text,Entry_Date,Entry_Time) VALUES(?,?,?,?)";
 		
 		Database db = new Database(this, "DATABASE", null, 1);
 		
