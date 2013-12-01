@@ -12,14 +12,18 @@ import android.graphics.drawable.Drawable;
 import android.text.Layout;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class DiaryActivity extends Activity {
+public class DiaryActivity extends Activity implements OnTouchListener  {
 
+	public static Integer EDITID = 0;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,7 +52,7 @@ public class DiaryActivity extends Activity {
 		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
 	
 		String selectEntriesQueryString = "SELECT * FROM DIARY WHERE Username = ?";
-		Cursor cursor = database.rawQuery(selectEntriesQueryString, new String[]{LoginActivity.LOGGED_IN_USERNAME} );
+		 Cursor cursor = database.rawQuery(selectEntriesQueryString, new String[]{LoginActivity.LOGGED_IN_USERNAME} );
 		
 		((LinearLayout)findViewById(R.id.diaryLinearLayout)).removeAllViews();
 		
@@ -82,7 +86,9 @@ public class DiaryActivity extends Activity {
 			layout.addView(messageView);
 			layout.addView(dateView);
 		
-			
+			layout.setId(cursor.getInt(0));
+			layout.setLongClickable(true);
+			layout.setOnTouchListener(this);
 			
 			((LinearLayout)findViewById(R.id.diaryLinearLayout)).addView(layout);
 		}
@@ -124,6 +130,18 @@ dialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
 
 dialogBuilder.show();
 		
+	}
+
+	@Override
+	public boolean onTouch(View arg0, MotionEvent arg1) {
+		
+		
+		if(arg1.getAction() == android.view.MotionEvent.ACTION_UP) {
+			Intent intent = new Intent(this,EditEntry.class);
+			EDITID = arg0.getId();
+			startActivity(intent);
+		}
+		return false;
 	}
 
 

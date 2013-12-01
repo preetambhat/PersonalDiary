@@ -42,6 +42,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.axionet.personaldiary.DiaryActivity" />
         </activity>
+        <activity
+            android:name="com.axionet.personaldiary.EditEntry"
+            android:label="@string/title_activity_edit_entry" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.axionet.personaldiary.DiaryActivity" />
+        </activity>
     </application>
 
 </manifest>

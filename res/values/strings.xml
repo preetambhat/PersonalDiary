@@ -7,5 +7,6 @@
     <string name="title_activity_create_user">Create User</string>
     <string name="title_activity_diary">DiaryActivity</string>
     <string name="title_activity_add_entry">AddEntry</string>
+    <string name="title_activity_edit_entry">EditEntry</string>
 
 </resources>
