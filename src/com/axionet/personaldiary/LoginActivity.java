@@ -82,8 +82,8 @@ public class LoginActivity extends Activity {
 dialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
 			
 			@Override
-			public void onClick(DialogInterface arg0, int arg1) {
-				arg0.cancel();
+			public void onClick(DialogInterface action, int arg1) {
+				action.cancel();
 				
 			}
 		});
