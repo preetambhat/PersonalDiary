@@ -50,12 +50,12 @@ public class LoginActivity extends Activity {
     	
     	String loginSQL = "SELECT * FROM User where Username = ? AND Password  = ?";
     	
-    	if((database.rawQuery(loginSQL, new String[]{userName,passWord}).getCount() == 0)){
+    	if((database.rawQuery(loginSQL, new String[]{userName.toUpperCase(),passWord.toUpperCase()}).getCount() == 0)){
     		Toast.makeText(this, "Invalid login details", Toast.LENGTH_SHORT).show();
     		database.close();
     	} else {
     		database.close();
-    		LOGGED_IN_USERNAME = userName;
+    		LOGGED_IN_USERNAME = userName.toUpperCase();
     		LoginActivity.this.finish();
     		Intent intent = new Intent(this,DiaryActivity.class);
     		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
